@@ -1,16 +1,21 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './MorphingBlob.css';
 
-// Pure CSS morphing blob — no GSAP dependency
 const MorphingBlob = () => {
     return (
         <div className="morphing-blob-container">
-            <svg className="blob blob-1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                <path className="blob-path-1" />
-            </svg>
-            <svg className="blob blob-2" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                <path className="blob-path-2" />
-            </svg>
+            {/* Main large blob — right side */}
+            <div className="bubble bubble-main"></div>
+
+            {/* Mid-size roaming blobs */}
+            <div className="bubble bubble-mid-left"></div>
+            <div className="bubble bubble-mid-bottom"></div>
+
+            {/* Small accent bubbles */}
+            <div className="bubble bubble-sm-1"></div>
+            <div className="bubble bubble-sm-2"></div>
+            <div className="bubble bubble-sm-3"></div>
+            <div className="bubble bubble-sm-4"></div>
         </div>
     );
 };

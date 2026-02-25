@@ -6,81 +6,150 @@
     z-index: 0;
 }
 
-.blob {
+/* Shared bubble base */
+.bubble {
     position: absolute;
-    opacity: 0.12;
+    border-radius: 50%;
+    background: var(--primary);
 }
 
-.blob-1 {
-    top: -10%;
-    left: -5%;
-    width: 55%;
-    animation: blobFloat1 14s ease-in-out infinite alternate;
+/* ── Main large blob (top-right, like before) ── */
+.bubble-main {
+    width: 52vw;
+    height: 52vw;
+    max-width: 620px;
+    max-height: 620px;
+    top: -8%;
+    right: -6%;
+    opacity: 0.10;
+    filter: blur(2px);
+    animation: float1 18s ease-in-out infinite alternate;
 }
 
-.blob-2 {
-    bottom: -15%;
-    right: -5%;
-    width: 50%;
-    animation: blobFloat2 18s ease-in-out infinite alternate;
+/* ── Medium blob (bottom-left corner) ── */
+.bubble-mid-left {
+    width: 28vw;
+    height: 28vw;
+    max-width: 320px;
+    max-height: 320px;
+    bottom: -10%;
+    left: -4%;
+    opacity: 0.07;
+    filter: blur(4px);
+    animation: float2 22s ease-in-out infinite alternate;
 }
 
-.blob-path-1 {
-    fill: var(--primary);
-    d: path("M450.5,334Q434,418,349,436.5Q264,455,183.5,431.5Q103,408,82.5,329Q62,250,103,184Q144,118,222.5,91.5Q301,65,384,107.5Q467,150,458.75,242Q450.5,334Z");
-    animation: morph1 12s ease-in-out infinite alternate;
+/* ── Medium blob (bottom-right, below main) ── */
+.bubble-mid-bottom {
+    width: 22vw;
+    height: 22vw;
+    max-width: 260px;
+    max-height: 260px;
+    bottom: 5%;
+    right: 8%;
+    opacity: 0.06;
+    filter: blur(6px);
+    animation: float3 26s ease-in-out infinite alternate;
 }
 
-.blob-path-2 {
-    fill: var(--primary);
-    d: path("M398,345.5Q346,441,248.5,439Q151,437,97,343.5Q43,250,102.5,160.5Q162,71,256,80Q350,89,400.5,169.5Q451,250,398,345.5Z");
-    animation: morph2 16s ease-in-out infinite alternate;
+/* ── Small accent bubbles ── */
+.bubble-sm-1 {
+    width: 120px;
+    height: 120px;
+    top: 15%;
+    left: 52%;
+    opacity: 0.06;
+    filter: blur(3px);
+    animation: float4 14s ease-in-out infinite alternate;
 }
 
-@keyframes morph1 {
+.bubble-sm-2 {
+    width: 80px;
+    height: 80px;
+    top: 65%;
+    left: 35%;
+    opacity: 0.08;
+    filter: blur(2px);
+    animation: float1 17s ease-in-out infinite alternate-reverse;
+}
+
+.bubble-sm-3 {
+    width: 55px;
+    height: 55px;
+    top: 30%;
+    right: 22%;
+    opacity: 0.09;
+    filter: blur(1px);
+    animation: float2 12s ease-in-out infinite alternate;
+}
+
+.bubble-sm-4 {
+    width: 40px;
+    height: 40px;
+    top: 72%;
+    right: 38%;
+    opacity: 0.07;
+    filter: blur(1px);
+    animation: float3 19s ease-in-out infinite alternate-reverse;
+}
+
+/* ── Float keyframes (varied paths for organic feel) ── */
+@keyframes float1 {
     0% {
-        d: path("M450.5,334Q434,418,349,436.5Q264,455,183.5,431.5Q103,408,82.5,329Q62,250,103,184Q144,118,222.5,91.5Q301,65,384,107.5Q467,150,458.75,242Q450.5,334Z");
-    }
-
-    50% {
-        d: path("M444,321Q420,392,347,430.5Q274,469,190.5,442Q107,415,75,332.5Q43,250,83.5,180.5Q124,111,213.5,88Q303,65,385.5,103Q468,141,456,231Q444,321Z");
-    }
-
-    100% {
-        d: path("M451,317Q413,384,339,433.5Q265,483,180.5,445Q96,407,81,328.5Q66,250,91,173.5Q116,97,211,85.5Q306,74,383,109.5Q460,145,455.5,231Q451,317Z");
-    }
-}
-
-@keyframes morph2 {
-    0% {
-        d: path("M398,345.5Q346,441,248.5,439Q151,437,97,343.5Q43,250,102.5,160.5Q162,71,256,80Q350,89,400.5,169.5Q451,250,398,345.5Z");
-    }
-
-    50% {
-        d: path("M421,329.5Q376,409,298,435.5Q220,462,142,423Q64,384,52,292Q40,200,101.5,130Q163,60,256.5,75.5Q350,91,408,170.5Q466,250,421,329.5Z");
-    }
-
-    100% {
-        d: path("M418.5,330Q385,410,300,432Q215,454,136,419.5Q57,385,55,292.5Q53,200,105,126Q157,52,253.5,69Q350,86,416,168Q482,250,418.5,330Z");
-    }
-}
-
-@keyframes blobFloat1 {
-    from {
         transform: translate(0, 0) scale(1);
     }
 
-    to {
-        transform: translate(3%, 4%) scale(1.05);
+    33% {
+        transform: translate(2%, 3%) scale(1.03);
+    }
+
+    66% {
+        transform: translate(-1%, 1%) scale(0.98);
+    }
+
+    100% {
+        transform: translate(3%, -2%) scale(1.05);
     }
 }
 
-@keyframes blobFloat2 {
-    from {
+@keyframes float2 {
+    0% {
         transform: translate(0, 0) scale(1);
     }
 
-    to {
-        transform: translate(-3%, -3%) scale(1.08);
+    40% {
+        transform: translate(-3%, 2%) scale(1.04);
+    }
+
+    100% {
+        transform: translate(2%, -4%) scale(0.96);
+    }
+}
+
+@keyframes float3 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-2%, -3%) scale(1.06);
+    }
+
+    100% {
+        transform: translate(3%, 2%) scale(0.97);
+    }
+}
+
+@keyframes float4 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    60% {
+        transform: translate(-4%, 3%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(2%, -2%) scale(0.95);
     }
 }
