@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { gsap } from 'gsap-trial';
+import React, { useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
 
@@ -7,30 +6,13 @@ const Navbar = ({ onCategoryChange, onAuthClick }) => {
     const { user, isAuthenticated, logout } = useAuth();
     const [searchOpen, setSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
-    const searchInputRef = useRef(null);
     const categories = ['ALL', 'JEANS', 'TROUSERS', 'CARGO'];
 
     const handleSearchToggle = () => {
-        if (!searchOpen) {
-            setSearchOpen(true);
-            // Wait for DOM update then focus and animate
-            setTimeout(() => {
-                if (searchInputRef.current) {
-                    gsap.fromTo(searchInputRef.current,
-                        { width: 0, opacity: 0 },
-                        { width: 200, opacity: 1, duration: 0.4, ease: 'power2.out' }
-                    );
-                    searchInputRef.current.focus();
-                }
-            }, 0);
-        } else {
-            if (searchInputRef.current) {
-                gsap.to(searchInputRef.current, {
-                    width: 0, opacity: 0, duration: 0.3, ease: 'power2.in',
-                    onComplete: () => { setSearchOpen(false); setSearchQuery(''); }
-                });
-            }
+        if (searchOpen) {
+            setSearchQuery('');
         }
+        setSearchOpen(prev => !prev);
     };
 
     return (
@@ -66,17 +48,14 @@ const Navbar = ({ onCategoryChange, onAuthClick }) => {
                 </ul>
                 <div className="navbar-icons">
                     <div className="search-area">
-                        {searchOpen && (
-                            <input
-                                ref={searchInputRef}
-                                type="text"
-                                className="search-input"
-                                placeholder="Search..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                onKeyDown={(e) => e.key === 'Escape' && handleSearchToggle()}
-                            />
-                        )}
+                        <input
+                            type="text"
+                            className={`search-input ${searchOpen ? 'search-input-open' : ''}`}
+                            placeholder="Search..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Escape' && handleSearchToggle()}
+                        />
                         <button className="icon-btn search-btn" onClick={handleSearchToggle}>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
                         </button>

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap-trial';
+import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import './AuthModal.css';
 
@@ -7,33 +6,8 @@ const AuthModal = ({ isOpen, onClose }) => {
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [error, setError] = useState('');
+    const [shake, setShake] = useState(false);
     const { login, signup } = useAuth();
-    const modalRef = useRef(null);
-    const contentRef = useRef(null);
-
-    useEffect(() => {
-        if (!modalRef.current) return;
-
-        if (isOpen) {
-            // Show first, then animate
-            modalRef.current.style.display = 'flex';
-            gsap.fromTo(modalRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 0.4, ease: "power2.out" }
-            );
-            gsap.fromTo(contentRef.current,
-                { y: 50, opacity: 0, scale: 0.9 },
-                { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)", delay: 0.1 }
-            );
-        } else {
-            // Animate out, then hide
-            gsap.to(modalRef.current, {
-                opacity: 0, duration: 0.3, ease: "power2.in", onComplete: () => {
-                    if (modalRef.current) modalRef.current.style.display = 'none';
-                }
-            });
-        }
-    }, [isOpen]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -50,25 +24,23 @@ const AuthModal = ({ isOpen, onClose }) => {
             onClose();
         } else {
             setError(result.message);
-            // Shake animation on error
-            gsap.to(contentRef.current, { x: 10, duration: 0.1, repeat: 5, yoyo: true });
+            // CSS shake animation on error
+            setShake(true);
+            setTimeout(() => setShake(false), 600);
         }
     };
 
     const toggleMode = () => {
-        gsap.to(contentRef.current, {
-            opacity: 0, scale: 0.95, duration: 0.2, onComplete: () => {
-                setIsLogin(!isLogin);
-                setError('');
-                gsap.to(contentRef.current, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" });
-            }
-        });
+        setIsLogin(!isLogin);
+        setError('');
     };
 
+    if (!isOpen) return null;
+
     return (
-        <div className="auth-modal" ref={modalRef} style={{ display: 'none' }}>
+        <div className="auth-modal">
             <div className="auth-overlay" onClick={onClose}></div>
-            <div className="auth-content" ref={contentRef}>
+            <div className={`auth-content ${shake ? 'shake' : ''} ${isOpen ? 'auth-content-visible' : ''}`}>
                 <button className="close-auth" onClick={onClose}>&times;</button>
                 <div className="auth-header">
                     <h2>{isLogin ? 'Welcome Back' : 'Join Gulim'}</h2>

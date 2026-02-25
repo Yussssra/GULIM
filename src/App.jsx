@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap-trial';
-import { ScrollToPlugin } from 'gsap-trial/ScrollToPlugin';
 import Navbar from './components/Navbar';
 import ProductGrid from './components/ProductGrid';
 import Preloader from './components/Preloader';
@@ -17,11 +15,6 @@ function App() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const collectionRef = useRef(null);
 
-  // Register GSAP plugin
-  useEffect(() => {
-    gsap.registerPlugin(ScrollToPlugin);
-  }, []);
-
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY });
@@ -30,15 +23,11 @@ function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Native smooth scroll — no GSAP needed
   const scrollToCollection = () => {
-    gsap.to(window, {
-      duration: 1.5,
-      scrollTo: {
-        y: collectionRef.current,
-        offsetY: 70 // Navbar height
-      },
-      ease: "power3.inOut"
-    });
+    if (collectionRef.current) {
+      collectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (
