@@ -1,0 +1,21 @@
+.blob-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blob-container svg {
+    width: 150%;
+    height: 150%;
+    opacity: 1;
+    filter: blur(20px);
+}

@@ -9,12 +9,16 @@ main {
 }
 
 .hero-banner {
-  height: 100vh;
+  height: 90vh;
+  /* Reduced height slightly for better vertical flow */
   background-color: var(--secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  /* Crucial for absolute blobs positioning */
 }
 
 .hero-container {
@@ -23,13 +27,30 @@ main {
   height: 100%;
   max-width: 1400px;
   align-items: center;
+  position: relative;
+  z-index: 2;
+  /* Elements like text and buttons above blobs */
+}
+
+.blob-container svg {
+  width: 150%;
+  height: 150%;
+  opacity: 0.6;
+  /* Lowered slightly for subtlety */
+  filter: blur(40px);
+  /* Increased blur for more atmospheric feel */
 }
 
 .hero-text {
   flex: 1;
-  padding: 0 100px;
-  text-align: left;
+  padding: 0 40px;
+  text-align: center;
+  /* Center-align text */
   color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   animation: floating 6s ease-in-out infinite;
 }
 
@@ -48,24 +69,32 @@ main {
 }
 
 .hero-text h1 {
-  font-size: 10rem;
+  font-size: clamp(5rem, 15vw, 12rem);
+  /* Responsive font size */
   font-family: var(--font-editorial);
   font-weight: 400;
-  margin-bottom: -20px;
-  line-height: 0.8;
+  margin: 0;
+  line-height: 1;
   color: var(--primary);
-  opacity: 0.15;
-  /* Large background text style */
+  /* Maroon color matching the theme */
   user-select: none;
+  font-style: italic;
+  /* Match brand logo style */
+  animation: fadeInDown 1.5s var(--transition-fluid) both;
 }
 
 .hero-text p {
   font-family: var(--font-editorial);
-  font-size: 2.5rem;
-  margin-bottom: 40px;
+  font-size: 2rem;
+  /* Adjusted for tighter feel */
+  margin: -5px 0 25px;
+  /* Negative top margin to bring it even closer */
+  /* Space between lines: Gulim, subtext, button */
   font-style: italic;
   position: relative;
   z-index: 2;
+  color: var(--primary-dark);
+  animation: fadeInUp 1.5s var(--transition-fluid) 0.3s both;
 }
 
 .buy-now-btn {
@@ -83,40 +112,49 @@ main {
 
 .buy-now-btn:hover {
   background-color: var(--primary-dark);
-  transform: translateX(10px);
+  transform: translateY(-5px);
 }
 
-.hero-image-carousel {
-  flex: 1;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.hero-actions {
+  margin-top: 0;
+  animation: fadeIn 2s var(--transition-fluid) 0.6s both;
 }
 
-.carousel-image {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  right: 40px;
-  bottom: 40px;
-  width: calc(100% - 80px);
-  height: calc(100% - 80px);
-  object-fit: cover;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  transform: scale(0.95);
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.carousel-image.active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 1;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
 
 .cursor-spotlight {
   position: fixed;
@@ -128,42 +166,6 @@ main {
   transform: translate(-50%, -50%);
   z-index: 9999;
   transition: width 0.3s ease, height 0.3s ease;
-}
-
-.section-divider {
-  padding: 80px 0 40px;
-  text-align: center;
-}
-
-.section-divider span {
-  font-family: var(--font-main);
-  font-size: 0.75rem;
-  letter-spacing: 0.5em;
-  font-weight: 700;
-  color: var(--primary);
-  opacity: 0.4;
-  position: relative;
-}
-
-.section-divider span::before,
-.section-divider span::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 40px;
-  height: 1px;
-  background-color: var(--primary);
-  opacity: 0.2;
-}
-
-.section-divider span::before {
-  right: 100%;
-  margin-right: 20px;
-}
-
-.section-divider span::after {
-  left: 100%;
-  margin-left: 20px;
 }
 
 .footer {

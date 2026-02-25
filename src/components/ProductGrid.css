@@ -6,18 +6,13 @@
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 80px 40px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+    padding-bottom: 60px;
 }
 
-/* Staggered effect - shift the second and every third item */
-.product-grid>div:nth-child(2n) {
-    transform: translateY(100px);
-}
 
-.product-grid>div:nth-child(3n) {
-    transform: translateY(-50px);
-}
+
 
 .loading {
     text-align: center;

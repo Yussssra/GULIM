@@ -3,11 +3,31 @@ import Product from '../models/Product.js';
 
 const router = express.Router();
 
-// Get all products
+// Get products with pagination and filtering
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find();
-        res.json(products);
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 9;
+        const skip = (page - 1) * limit;
+        const category = req.query.category;
+
+        let query = {};
+        if (category && category !== 'ALL') {
+            query.category = new RegExp(`^${category}$`, 'i');
+        }
+
+        const totalProducts = await Product.countDocuments(query);
+        const products = await Product.find(query)
+            .skip(skip)
+            .limit(limit)
+            .sort({ id: 1 });
+
+        res.json({
+            products,
+            totalProducts,
+            totalPages: Math.ceil(totalProducts / limit),
+            currentPage: page
+        });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

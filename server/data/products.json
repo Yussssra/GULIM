@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "Gulim Signature Jeans",
-        "price": 69.99,
+        "price": 1599,
         "category": "Jeans",
         "image": "https://image2url.com/r2/default/images/1772033642824-4e6e7d72-6bf4-47d3-a6cd-5974f0ed1d6b.jpg",
         "description": "Premium signature denim with a perfect fit and high-quality finish."
@@ -10,7 +10,7 @@
     {
         "id": 2,
         "name": "Vintage Wash Denim",
-        "price": 75.00,
+        "price": 1999,
         "category": "Jeans",
         "image": "https://image2url.com/r2/default/images/1772033736375-5a1d8239-2013-438b-91dc-0ec36dc664fa.jpg",
         "description": "Authentic vintage wash jeans for a classic, timeless look."
@@ -18,7 +18,7 @@
     {
         "id": 3,
         "name": "Slim Fit Maroon Jeans",
-        "price": 59.99,
+        "price": 1679,
         "category": "Jeans",
         "image": "https://image2url.com/r2/default/images/1772033775019-d1eeb97c-7586-4967-891c-b9152bd37643.jpg",
         "description": "Sleek slim-fit jeans in our signature maroon shade."
@@ -26,7 +26,7 @@
     {
         "id": 4,
         "name": "Urban Tapered Denim",
-        "price": 65.00,
+        "price": 1799,
         "category": "Jeans",
         "image": "https://image2url.com/r2/default/images/1772033806145-d3eebc93-c4a5-4560-8078-4307aac709e1.jpg",
         "description": "Modern tapered fit for an urban lifestyle."
@@ -34,7 +34,7 @@
     {
         "id": 5,
         "name": "Heritage Straight Leg",
-        "price": 79.99,
+        "price": 1599,
         "category": "Jeans",
         "image": "https://image2url.com/r2/default/images/1772033846954-cc0f9eef-aa4c-42c0-a9ca-9a005a453294.jpg",
         "description": "Hard-wearing straight leg jeans built to last."
@@ -42,7 +42,7 @@
     {
         "id": 6,
         "name": "Midnight Indigo Jeans",
-        "price": 72.00,
+        "price": 1999,
         "category": "Jeans",
         "image": "https://image2url.com/r2/default/images/1772033901122-85fdce7a-1434-48d2-8bf2-484973d8f958.jpg",
         "description": "Deep indigo shades for a sharp, evening-ready appearance."
@@ -50,7 +50,7 @@
     {
         "id": 7,
         "name": "Relaxed Fit Denim",
-        "price": 68.00,
+        "price": 1679,
         "category": "Jeans",
         "image": "https://image2url.com/r2/default/images/1772033950032-e98e2ad0-1954-4fd1-8889-12250b67405f.jpg",
         "description": "Comfortable relaxed fit jeans for everyday wear."
@@ -58,7 +58,7 @@
     {
         "id": 8,
         "name": "Rugged Workwear Jeans",
-        "price": 85.00,
+        "price": 1799,
         "category": "Jeans",
         "image": "https://image2url.com/r2/default/images/1772034000358-8765de32-d6d9-4198-8b16-93d5e23d3a1f.jpg",
         "description": "Heavyweight denim reinforced for maximum durability."
@@ -66,9 +66,57 @@
     {
         "id": 9,
         "name": "Premium Selvedge Jeans",
-        "price": 95.00,
+        "price": 1999,
         "category": "Jeans",
         "image": "https://image2url.com/r2/default/images/1772034054650-313c6b4d-4abd-4dca-a9ca-7cde57538d60.jpg",
         "description": "Our finest selvedge denim for the true connoisseur."
+    },
+    {
+        "id": 10,
+        "name": "Starlight Blue Denim",
+        "price": 1599,
+        "category": "Jeans",
+        "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=1000&auto=format&fit=crop",
+        "description": "Bright and airy blue denim for a fresh summer look."
+    },
+    {
+        "id": 11,
+        "name": "Shadow Black Skinny",
+        "price": 1679,
+        "category": "Jeans",
+        "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1000&auto=format&fit=crop",
+        "description": "Sleek black skinny jeans for a modern silhouette."
+    },
+    {
+        "id": 12,
+        "name": "Rustic Brown Corduroy",
+        "price": 1799,
+        "category": "Jeans",
+        "image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=1000&auto=format&fit=crop",
+        "description": "Textured corduroy finishing in a warm rustic brown."
+    },
+    {
+        "id": 13,
+        "name": "Arctic Grey Tapered",
+        "price": 1999,
+        "category": "Jeans",
+        "image": "https://images.unsplash.com/photo-1582552938357-32b906df40cb?q=80&w=1000&auto=format&fit=crop",
+        "description": "Cool grey tones in a modern tapered cut."
+    },
+    {
+        "id": 14,
+        "name": "Ocean Blue Bootcut",
+        "price": 1599,
+        "category": "Jeans",
+        "image": "https://images.unsplash.com/photo-1604176354204-9268737828e4?q=80&w=1000&auto=format&fit=crop",
+        "description": "Classic bootcut style in a deep ocean blue wash."
+    },
+    {
+        "id": 15,
+        "name": "Desert Sand Chinos",
+        "price": 1679,
+        "category": "Jeans",
+        "image": "https://images.unsplash.com/photo-1624372333716-2949b513cdb4?q=80&w=1000&auto=format&fit=crop",
+        "description": "Lightweight and comfortable desert sand colored chinos."
     }
 ]

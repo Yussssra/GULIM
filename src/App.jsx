@@ -1,15 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap-trial';
+import { ScrollToPlugin } from 'gsap-trial/ScrollToPlugin';
 import Navbar from './components/Navbar';
 import ProductGrid from './components/ProductGrid';
 import Preloader from './components/Preloader';
 import Marquee from './components/Marquee';
-import JeansShowcase from './components/JeansShowcase';
+import MorphingBlob from './components/MorphingBlob';
+import AnimatedDivider from './components/AnimatedDivider';
+import AuthModal from './components/AuthModal';
 import './App.css';
 
 function App() {
   const [category, setCategory] = useState('ALL');
   const [isLoading, setIsLoading] = useState(true);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const collectionRef = useRef(null);
+
+  // Register GSAP plugin
+  useEffect(() => {
+    gsap.registerPlugin(ScrollToPlugin);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -19,12 +30,16 @@ function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [heroImages.length]);
+  const scrollToCollection = () => {
+    gsap.to(window, {
+      duration: 1.5,
+      scrollTo: {
+        y: collectionRef.current,
+        offsetY: 70 // Navbar height
+      },
+      ease: "power3.inOut"
+    });
+  };
 
   return (
     <div className="app">
@@ -36,34 +51,24 @@ function App() {
         }}
       />
       {isLoading && <Preloader onLoadingComplete={() => setIsLoading(false)} />}
-      <Navbar onCategoryChange={setCategory} />
+      <Marquee />
+      <Navbar onCategoryChange={setCategory} onAuthClick={() => setIsAuthOpen(true)} />
       <main>
         <div className="hero-banner">
+          <MorphingBlob />
           <div className="hero-container">
             <div className="hero-text">
               <h1>Gulim</h1>
-              <p>The basic store</p>
-              <button className="buy-now-btn">BUY NOW</button>
-            </div>
-            <div className="hero-image-carousel">
-              {heroImages.map((img, index) => (
-                <img
-                  key={index}
-                  src={img}
-                  alt={`Gulim Hero ${index + 1}`}
-                  className={`carousel-image ${index === currentImageIndex ? 'active' : ''}`}
-                />
-              ))}
+              <p>THE BASIC STORE</p>
+              <div className="hero-actions">
+                <button className="buy-now-btn" onClick={scrollToCollection}>BUY NOW</button>
+              </div>
             </div>
           </div>
         </div>
 
-        <Marquee />
-
-        <JeansShowcase images={heroImages} />
-
-        <div className="section-divider">
-          <span>THE COLLECTION</span>
+        <div ref={collectionRef}>
+          <AnimatedDivider label="THE COLLECTION" />
         </div>
 
         <ProductGrid category={category} />
@@ -77,6 +82,7 @@ function App() {
           </div>
         </div>
       </footer>
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </div>
   );
 }

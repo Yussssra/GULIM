@@ -1,0 +1,39 @@
+.animated-divider {
+    padding: 120px 0 60px;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.divider-svg-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 40px;
+}
+
+.divider-svg-container svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.divider-label {
+    font-family: var(--font-main);
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    background-color: var(--secondary);
+    /* Match background to hide lines behind text if they overlap */
+    padding: 0 20px;
+}

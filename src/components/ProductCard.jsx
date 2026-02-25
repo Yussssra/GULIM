@@ -13,13 +13,13 @@ const ProductCard = ({ product }) => {
             <div className="product-image-container">
                 <img src={product.image} alt={product.name} className="product-image" />
                 <div className="product-actions">
-                    <button className="add-to-cart">QUICK ADD</button>
+                    <button className="add-to-cart">BUY</button>
                 </div>
             </div>
             <div className="product-info">
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-category">{product.category}</p>
-                <p className="product-price">${product.price.toFixed(2)}</p>
+                <p className="product-price">₹{product.price}</p>
             </div>
         </div>
     );
