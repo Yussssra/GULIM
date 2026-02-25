@@ -1,0 +1,35 @@
+.product-grid-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px 40px;
+}
+
+/* Staggered effect - shift the second and every third item */
+.product-grid>div:nth-child(2n) {
+    transform: translateY(100px);
+}
+
+.product-grid>div:nth-child(3n) {
+    transform: translateY(-50px);
+}
+
+.loading {
+    text-align: center;
+    padding: 100px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+}

@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --primary: #4a0404;
+  /* Dark Maroon */
+  --primary-dark: #300202;
+  --secondary: #F5F5DC;
+  /* Beige */
+  --white: #FFFFFF;
+  --black: #121212;
+  --gray-light: #f1f1e6;
+  --gray: #dcdcc6;
+
+  /* Typography Tokens */
+  --font-main: 'Montserrat', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-editorial: 'Cormorant Garamond', serif;
+
+  --transition-fluid: cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--secondary);
+  color: var(--black);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-editorial);
+  font-weight: 400;
+}
+
+label,
+.nav-link,
+.button-label {
+  font-family: var(--font-main);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font-main);
+  transition: all 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Utils */
+.text-maroon {
+  color: var(--primary);
+}
+
+.bg-maroon {
+  background-color: var(--primary);
+}
+
+.bg-beige {
+  background-color: var(--secondary);
+}

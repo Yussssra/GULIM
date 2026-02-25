@@ -1,0 +1,120 @@
+.navbar {
+    background-color: rgba(245, 245, 220, 0.8);
+    /* Translucent Beige */
+    backdrop-filter: blur(10px);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(74, 4, 4, 0.05);
+}
+
+.navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.brand-logo {
+    font-family: var(--font-editorial);
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--primary);
+    letter-spacing: -0.02em;
+    margin: 0;
+    font-style: italic;
+    cursor: pointer;
+}
+
+.brand-logo::first-letter {
+    font-size: 2.6rem;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar-links li {
+    position: relative;
+    padding: 10px 0;
+}
+
+.navbar-links li a {
+    font-family: var(--font-main);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--primary);
+    padding: 10px 0;
+    text-transform: uppercase;
+}
+
+.navbar-links li a:hover {
+    color: var(--primary-dark);
+}
+
+.dropdown-box {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--secondary);
+    border: 1px solid var(--gray);
+    min-width: 180px;
+    display: none;
+    z-index: 1001;
+    padding: 20px 0;
+}
+
+.nav-item-dropdown:hover .dropdown-box {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 10px 24px;
+    color: var(--primary);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s var(--transition-fluid);
+    text-align: left;
+}
+
+.dropdown-item:hover {
+    background-color: var(--gray-light);
+    color: var(--primary-dark);
+    padding-left: 28px;
+}
+
+.navbar-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.icon-btn {
+    background: none;
+    color: var(--primary);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.icon-btn:hover {
+    color: var(--white);
+}
+
+.icon-btn svg {
+    width: 100%;
+    height: 100%;
+}
