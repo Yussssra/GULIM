@@ -169,12 +169,16 @@ main {
 }
 
 .footer {
-  padding: 40px;
-  background-color: var(--black);
-  color: var(--white);
+  padding: 50px 40px;
+  background-color: var(--primary);
+  /* Maroon */
+  color: var(--secondary);
+  /* Beige */
   text-align: center;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .footer-content {
@@ -192,10 +196,12 @@ main {
 .footer-contact a {
   color: var(--secondary);
   font-weight: 500;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
 }
 
 .footer-contact a:hover {
-  color: var(--white);
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
