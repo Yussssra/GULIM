@@ -56,7 +56,7 @@ function App() {
           </div>
         </div>
 
-        <div ref={collectionRef}>
+        <div ref={collectionRef} style={{ scrollMarginTop: '80px' }}>
           <AnimatedDivider label="THE COLLECTION" />
         </div>
 
