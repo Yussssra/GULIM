@@ -6,150 +6,81 @@
     z-index: 0;
 }
 
-/* Shared bubble base */
 .bubble {
     position: absolute;
     border-radius: 50%;
-    background: var(--primary);
+    background: #c8b8a2;
+    /* Warm taupe — softer than maroon */
 }
 
-/* ── Main large blob (top-right, like before) ── */
+/* Large: top-right — the hero accent */
 .bubble-main {
-    width: 52vw;
-    height: 52vw;
-    max-width: 620px;
-    max-height: 620px;
-    top: -8%;
-    right: -6%;
-    opacity: 0.10;
-    filter: blur(2px);
-    animation: float1 18s ease-in-out infinite alternate;
+    width: 480px;
+    height: 480px;
+    top: -80px;
+    right: -60px;
+    opacity: 0.45;
+    animation: floatA 20s ease-in-out infinite alternate;
 }
 
-/* ── Medium blob (bottom-left corner) ── */
-.bubble-mid-left {
-    width: 28vw;
-    height: 28vw;
-    max-width: 320px;
-    max-height: 320px;
-    bottom: -10%;
-    left: -4%;
-    opacity: 0.07;
-    filter: blur(4px);
-    animation: float2 22s ease-in-out infinite alternate;
+/* Medium: bottom-left — balances the layout */
+.bubble-left {
+    width: 260px;
+    height: 260px;
+    bottom: -60px;
+    left: -40px;
+    opacity: 0.30;
+    animation: floatB 25s ease-in-out infinite alternate;
 }
 
-/* ── Medium blob (bottom-right, below main) ── */
-.bubble-mid-bottom {
-    width: 22vw;
-    height: 22vw;
-    max-width: 260px;
-    max-height: 260px;
-    bottom: 5%;
-    right: 8%;
-    opacity: 0.06;
-    filter: blur(6px);
-    animation: float3 26s ease-in-out infinite alternate;
+/* Small: mid-right, below main — adds rhythm without conflict */
+.bubble-accent {
+    width: 130px;
+    height: 130px;
+    bottom: 12%;
+    right: 18%;
+    opacity: 0.22;
+    animation: floatC 16s ease-in-out infinite alternate;
 }
 
-/* ── Small accent bubbles ── */
-.bubble-sm-1 {
-    width: 120px;
-    height: 120px;
-    top: 15%;
-    left: 52%;
-    opacity: 0.06;
-    filter: blur(3px);
-    animation: float4 14s ease-in-out infinite alternate;
-}
-
-.bubble-sm-2 {
-    width: 80px;
-    height: 80px;
-    top: 65%;
-    left: 35%;
-    opacity: 0.08;
-    filter: blur(2px);
-    animation: float1 17s ease-in-out infinite alternate-reverse;
-}
-
-.bubble-sm-3 {
-    width: 55px;
-    height: 55px;
-    top: 30%;
-    right: 22%;
-    opacity: 0.09;
-    filter: blur(1px);
-    animation: float2 12s ease-in-out infinite alternate;
-}
-
-.bubble-sm-4 {
-    width: 40px;
-    height: 40px;
-    top: 72%;
-    right: 38%;
-    opacity: 0.07;
-    filter: blur(1px);
-    animation: float3 19s ease-in-out infinite alternate-reverse;
-}
-
-/* ── Float keyframes (varied paths for organic feel) ── */
-@keyframes float1 {
+@keyframes floatA {
     0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    33% {
-        transform: translate(2%, 3%) scale(1.03);
-    }
-
-    66% {
-        transform: translate(-1%, 1%) scale(0.98);
-    }
-
-    100% {
-        transform: translate(3%, -2%) scale(1.05);
-    }
-}
-
-@keyframes float2 {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    40% {
-        transform: translate(-3%, 2%) scale(1.04);
-    }
-
-    100% {
-        transform: translate(2%, -4%) scale(0.96);
-    }
-}
-
-@keyframes float3 {
-    0% {
-        transform: translate(0, 0);
+        transform: translate(0px, 0px);
     }
 
     50% {
-        transform: translate(-2%, -3%) scale(1.06);
+        transform: translate(-18px, 14px);
     }
 
     100% {
-        transform: translate(3%, 2%) scale(0.97);
+        transform: translate(10px, -20px);
     }
 }
 
-@keyframes float4 {
+@keyframes floatB {
     0% {
-        transform: translate(0, 0) scale(1);
+        transform: translate(0px, 0px);
     }
 
-    60% {
-        transform: translate(-4%, 3%) scale(1.1);
+    50% {
+        transform: translate(14px, -18px);
     }
 
     100% {
-        transform: translate(2%, -2%) scale(0.95);
+        transform: translate(-10px, 12px);
+    }
+}
+
+@keyframes floatC {
+    0% {
+        transform: translate(0px, 0px);
+    }
+
+    50% {
+        transform: translate(-12px, -14px);
+    }
+
+    100% {
+        transform: translate(16px, 10px);
     }
 }
