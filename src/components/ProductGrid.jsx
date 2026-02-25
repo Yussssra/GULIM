@@ -1,49 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
+import ALL_PRODUCTS from '../data/products';
 import './ProductGrid.css';
 
-const ProductGrid = ({ category }) => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const productsPerPage = 8; // Showing 8 products per page as requested
+const PRODUCTS_PER_PAGE = 8;
 
-    useEffect(() => {
-        // Reset to page 1 when category changes
-        setCurrentPage(1);
+const ProductGrid = ({ category }) => {
+    const [currentPage, setCurrentPage] = useState(1);
+
+    // Filter by category client-side — no backend needed
+    const filtered = useMemo(() => {
+        if (!category || category === 'ALL') return ALL_PRODUCTS;
+        return ALL_PRODUCTS.filter(p => p.category === category.toUpperCase());
     }, [category]);
 
-    useEffect(() => {
-        setLoading(true);
-        const url = `http://localhost:5000/api/products?page=${currentPage}&limit=${productsPerPage}&category=${category}`;
+    // Paginate
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PRODUCTS_PER_PAGE));
+    const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    const products = filtered.slice(start, start + PRODUCTS_PER_PAGE);
 
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.products) {
-                    setProducts(data.products);
-                    setTotalPages(data.totalPages || 1);
-                } else if (Array.isArray(data)) {
-                    // Fallback for old API structure
-                    setProducts(data);
-                    setTotalPages(1);
-                } else {
-                    console.error('Unexpected API response structure:', data);
-                    setProducts([]);
-                }
-                setLoading(false);
-            })
-            .catch(err => {
-                console.error('Error fetching products:', err);
-                setLoading(false);
-            });
-    }, [category, currentPage]);
-
-    if (loading) {
-        return <div className="loading">Loading products...</div>;
-    }
+    // Reset to page 1 when category changes
+    const handleCategoryPage = (page) => {
+        setCurrentPage(page);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <div className="product-grid-container">
@@ -51,12 +32,16 @@ const ProductGrid = ({ category }) => {
                 {products.map(product => (
                     <ProductCard key={product.id} product={product} />
                 ))}
+                {products.length === 0 && (
+                    <p style={{ color: 'var(--primary)', opacity: 0.5, letterSpacing: '0.2em', fontSize: '0.8rem', textTransform: 'uppercase' }}>
+                        No products found.
+                    </p>
+                )}
             </div>
-
             <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                onPageChange={setCurrentPage}
+                onPageChange={handleCategoryPage}
             />
         </div>
     );
