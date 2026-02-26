@@ -13,11 +13,28 @@ const AuthModal = ({ isOpen, onClose }) => {
         e.preventDefault();
         setError('');
 
+        // Client-side validation
+        if (!isLogin) {
+            if (!formData.email.toLowerCase().endsWith('@gmail.com')) {
+                setError('Only Gmail addresses are allowed');
+                setShake(true);
+                setTimeout(() => setShake(false), 600);
+                return;
+            }
+            if (formData.password.length < 8) {
+                setError('Password must be at least 8 characters long');
+                setShake(true);
+                setTimeout(() => setShake(false), 600);
+                return;
+            }
+        }
+
         let result;
+        const processedEmail = formData.email.toLowerCase().trim();
         if (isLogin) {
-            result = await login(formData.email, formData.password);
+            result = await login(processedEmail, formData.password);
         } else {
-            result = await signup(formData.name, formData.email, formData.password);
+            result = await signup(formData.name, processedEmail, formData.password);
         }
 
         if (result.success) {

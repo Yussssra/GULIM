@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
             }
             return { success: false, message: data.message };
         } catch (err) {
-            return { success: false, message: 'Server error' };
+            return { success: false, message: 'Connection error: Is the server running?' };
         }
     };
 
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
             }
             return { success: false, message: data.message };
         } catch (err) {
-            return { success: false, message: 'Server error' };
+            return { success: false, message: 'Connection error: Is the server running?' };
         }
     };
 

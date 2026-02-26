@@ -1,3 +1,31 @@
+:root {
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --color-luxury: #faf9f6;
+  --color-black: #111111;
+  --color-gold: #c5a059;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-luxury);
+  color: var(--color-black);
+  -webkit-font-smoothing: antialiased;
+  background-image: url("https://www.transparenttextures.com/patterns/p6.png");
+  /* Subtle grain */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
 .app {
   min-height: 100vh;
   display: flex;
@@ -12,6 +40,10 @@ main {
   height: 90vh;
   /* Reduced height slightly for better vertical flow */
   background-color: var(--secondary);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=2670&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,8 +107,8 @@ main {
   font-weight: 400;
   margin: 0;
   line-height: 1;
-  color: var(--primary);
-  /* Maroon color matching the theme */
+  color: var(--secondary);
+  /* Beige color for contrast */
   user-select: none;
   font-style: italic;
   /* Match brand logo style */
@@ -93,7 +125,7 @@ main {
   font-style: italic;
   position: relative;
   z-index: 2;
-  color: var(--primary-dark);
+  color: var(--secondary);
   animation: fadeInUp 1.5s var(--transition-fluid) 0.3s both;
 }
 

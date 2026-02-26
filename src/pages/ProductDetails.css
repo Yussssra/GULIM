@@ -1,0 +1,476 @@
+.product-details-page {
+    padding: 40px 5% 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #888;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    color: #000;
+    transform: translateX(-5px);
+}
+
+.product-details-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+}
+
+@media (max-width: 1024px) {
+    .product-details-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+/* Left Section: Image Sticky */
+.product-visual-section {
+    position: relative;
+}
+
+.image-wrapper {
+    position: sticky;
+    top: 80px;
+    background: #fff;
+    padding: 3rem;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.03);
+}
+
+.main-product-image {
+    max-width: 100%;
+    max-height: 700px;
+    object-fit: contain;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-wrapper:hover .main-product-image {
+    transform: scale(1.05);
+}
+
+.badge-featured {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background: #111;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: 30px;
+    z-index: 5;
+}
+
+/* Right Section: Content */
+.product-content-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.pulsate {
+    animation: lux-pulsate 2s infinite;
+}
+
+@keyframes lux-pulsate {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.product-title-lux {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.1;
+    color: #111;
+}
+
+.category-tag {
+    font-size: 0.9rem;
+    color: #888;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 2.5rem;
+}
+
+.product-price-lux {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+    font-family: var(--font-heading);
+}
+
+.free-shipping-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #2e7d32;
+    background: #e8f5e9;
+    padding: 6px 12px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+.product-description-minimal {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 3rem;
+}
+
+/* Size Selector Lux */
+.product-sizes-lux {
+    margin-bottom: 3.5rem;
+}
+
+.sizes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.sizes-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.size-guide-trigger {
+    font-size: 0.85rem;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #888;
+}
+
+.size-selector {
+    display: flex;
+    gap: 15px;
+}
+
+.size-option {
+    flex: 1;
+    height: 55px;
+    border: 1px solid #eee;
+    background: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.size-option:hover {
+    border-color: #000;
+    transform: translateY(-2px);
+}
+
+.size-option.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Actions Fixed */
+.product-actions-fixed {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    margin-bottom: 3.5rem;
+}
+
+
+.action-button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+    .action-button-group {
+        grid-template-columns: 1fr;
+    }
+}
+
+.btn-add-to-cart,
+.btn-order-now {
+    height: 65px;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-add-to-cart {
+    background: transparent;
+    border: 2px solid #111;
+    color: #111;
+}
+
+.btn-order-now {
+    background: #111;
+    color: #fff;
+}
+
+.btn-add-to-cart:hover,
+.btn-order-now:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.btn-order-now:hover {
+    background: #222;
+}
+
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 0.75rem;
+    color: #888;
+}
+
+/* Lux Tabs */
+.lux-tab-nav {
+    display: flex;
+    gap: 3rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 2rem;
+}
+
+.lux-tab-btn {
+    background: none;
+    border: none;
+    padding: 0 0 1rem 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #aaa;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.lux-tab-btn.active {
+    color: #111;
+}
+
+.lux-tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #111;
+    transition: width 0.3s ease;
+}
+
+.lux-tab-btn.active::after {
+    width: 100%;
+}
+
+.lux-tab-panel {
+    min-height: 200px;
+}
+
+.fade-in {
+    animation: lux-fade 0.5s ease both;
+}
+
+@keyframes lux-fade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.details-list-lux {
+    padding-left: 1.2rem;
+    line-height: 2.2;
+    color: #555;
+}
+
+.lux-size-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lux-size-table th {
+    text-align: left;
+    padding: 1rem;
+    background: #fafafa;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.lux-size-table td {
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+}
+
+/* Review Lux */
+.reviews-summary-lux {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.rating-huge {
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+.lux-stars {
+    color: var(--color-gold);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.lux-review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.lux-review-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #f5f5f5;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.reviewer-lux {
+    font-weight: 700;
+}
+
+.review-date-lux {
+    color: #bbb;
+    font-size: 0.85rem;
+}
+
+.lux-stars-small {
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+}
+
+.comment-lux {
+    color: #555;
+    line-height: 1.6;
+}
+
+.lux-review-form {
+    background: #fafafa;
+    padding: 3rem;
+    border-radius: 16px;
+}
+
+.lux-rating-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.lux-star-input {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ddd;
+    transition: all 0.2s ease;
+}
+
+.lux-star-input.active {
+    color: var(--color-gold);
+}
+
+.lux-review-form textarea {
+    width: 100%;
+    min-height: 120px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    resize: vertical;
+}
+
+.btn-lux-submit {
+    padding: 1.2rem 3rem;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+}

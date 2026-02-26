@@ -10,6 +10,8 @@ export const CartProvider = ({ children }) => {
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
+    const [isCartOpen, setIsCartOpen] = useState(false);
+
     useEffect(() => {
         localStorage.setItem('gulim_cart', JSON.stringify(cartItems));
     }, [cartItems]);
@@ -43,12 +45,19 @@ export const CartProvider = ({ children }) => {
     const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     const cartTotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
+    const clearCart = () => {
+        setCartItems([]);
+    };
+
     return (
         <CartContext.Provider value={{
             cartItems,
             addToCart,
             removeFromCart,
             updateQuantity,
+            clearCart,
+            isCartOpen,
+            setIsCartOpen,
             cartCount,
             cartTotal
         }}>

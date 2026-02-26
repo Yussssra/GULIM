@@ -1,18 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ProductGrid from './components/ProductGrid';
+import { useCart } from './context/CartContext';
 import Preloader from './components/Preloader';
 import Marquee from './components/Marquee';
 import MorphingBlob from './components/MorphingBlob';
 import AnimatedDivider from './components/AnimatedDivider';
 import AuthModal from './components/AuthModal';
+import CartSidebar from './components/CartSidebar';
+import ProductDetails from './pages/ProductDetails';
 import './App.css';
 
 function App() {
+  const { setIsCartOpen } = useCart();
   const [category, setCategory] = useState('ALL');
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [searchQuery, setSearchQuery] = useState('');
   const collectionRef = useRef(null);
 
   useEffect(() => {
@@ -41,27 +47,38 @@ function App() {
       />
       {isLoading && <Preloader onLoadingComplete={() => setIsLoading(false)} />}
       <Marquee />
-      <Navbar onCategoryChange={setCategory} onAuthClick={() => setIsAuthOpen(true)} />
-      <main>
-        <div className="hero-banner">
-          <MorphingBlob />
-          <div className="hero-container">
-            <div className="hero-text">
-              <h1>Gulim</h1>
-              <p>THE BASIC STORE</p>
-              <div className="hero-actions">
-                <button className="buy-now-btn" onClick={scrollToCollection}>BUY NOW</button>
+      <Navbar
+        onCategoryChange={setCategory}
+        onAuthClick={() => setIsAuthOpen(true)}
+        onCartClick={() => setIsCartOpen(true)}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onSearchSubmit={scrollToCollection}
+      />
+      <Routes>
+        <Route path="/" element={
+          <main>
+            <div className="hero-banner">
+              <div className="hero-container">
+                <div className="hero-text">
+                  <h1>Gulim</h1>
+                  <p>THE BASIC STORE</p>
+                  <div className="hero-actions">
+                    <button className="buy-now-btn" onClick={scrollToCollection}>BUY NOW</button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div ref={collectionRef} style={{ scrollMarginTop: '80px' }}>
-          <AnimatedDivider label="THE COLLECTION" />
-        </div>
+            <div ref={collectionRef} style={{ scrollMarginTop: '70px' }}>
+              <AnimatedDivider label="THE COLLECTION" />
+            </div>
 
-        <ProductGrid category={category} />
-      </main>
+            <ProductGrid category={category} searchQuery={searchQuery} />
+          </main>
+        } />
+        <Route path="/product/:id" element={<ProductDetails />} />
+      </Routes>
       <footer className="footer">
         <div className="footer-content">
           <p>&copy; 2025 GULIM Store. All rights reserved.</p>
@@ -72,6 +89,7 @@ function App() {
         </div>
       </footer>
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+      <CartSidebar onAuthClick={() => setIsAuthOpen(true)} />
     </div>
   );
 }

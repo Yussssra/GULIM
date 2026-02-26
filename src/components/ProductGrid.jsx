@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import ALL_PRODUCTS from '../data/products';
@@ -6,14 +7,42 @@ import './ProductGrid.css';
 
 const PRODUCTS_PER_PAGE = 8;
 
-const ProductGrid = ({ category }) => {
+const ProductGrid = ({ category, searchQuery }) => {
     const [currentPage, setCurrentPage] = useState(1);
+    const navigate = useNavigate();
 
-    // Filter by category client-side — no backend needed
+    const handleProductClick = (product) => {
+        navigate(`/product/${product.id}`);
+    };
+
+    // Reset to page 1 when search or category changes
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [category, searchQuery]);
+
+    const gridRef = useRef(null);
+
+    // Filter by category and search query client-side
     const filtered = useMemo(() => {
-        if (!category || category === 'ALL') return ALL_PRODUCTS;
-        return ALL_PRODUCTS.filter(p => p.category === category.toUpperCase());
-    }, [category]);
+        let items = ALL_PRODUCTS;
+
+        // Category filter
+        if (category && category !== 'ALL') {
+            items = items.filter(p => p.category === category.toUpperCase());
+        }
+
+        // Search query filter
+        if (searchQuery) {
+            const query = searchQuery.toLowerCase();
+            items = items.filter(p =>
+                p.name.toLowerCase().includes(query) ||
+                p.category.toLowerCase().includes(query) ||
+                (p.description && p.description.toLowerCase().includes(query))
+            );
+        }
+
+        return items;
+    }, [category, searchQuery]);
 
     // Paginate
     const totalPages = Math.max(1, Math.ceil(filtered.length / PRODUCTS_PER_PAGE));
@@ -23,14 +52,16 @@ const ProductGrid = ({ category }) => {
     // Reset to page 1 when category changes
     const handleCategoryPage = (page) => {
         setCurrentPage(page);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (gridRef.current) {
+            gridRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     };
 
     return (
-        <div className="product-grid-container">
+        <div className="product-grid-container" ref={gridRef} style={{ scrollMarginTop: '100px' }}>
             <div className="product-grid">
                 {products.map(product => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard key={product.id} product={product} onProductClick={handleProductClick} />
                 ))}
                 {products.length === 0 && (
                     <p style={{ color: 'var(--primary)', opacity: 0.5, letterSpacing: '0.2em', fontSize: '0.8rem', textTransform: 'uppercase' }}>
