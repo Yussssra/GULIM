@@ -13,11 +13,13 @@ const CartSidebar = ({ onAuthClick }) => {
         fullName: '', street: '', city: '', state: '', zipCode: '', phone: ''
     });
     const [paymentMethod, setPaymentMethod] = React.useState('COD');
+    const [upiTransactionId, setUpiTransactionId] = React.useState('');
 
     const onClose = () => {
         setIsCartOpen(false);
         setOrderSuccess(false);
         setCheckoutMode(false);
+        setUpiTransactionId('');
     };
 
     const handleCheckoutInit = () => {
@@ -39,6 +41,11 @@ const CartSidebar = ({ onAuthClick }) => {
             return;
         }
 
+        if (paymentMethod === 'UPI' && !upiTransactionId) {
+            alert('Please enter your UPI Transaction ID to confirm payment.');
+            return;
+        }
+
         try {
             const response = await fetch('/api/orders', {
                 method: 'POST',
@@ -50,7 +57,8 @@ const CartSidebar = ({ onAuthClick }) => {
                     items: cartItems,
                     totalAmount: cartTotal,
                     shippingAddress,
-                    paymentMethod
+                    paymentMethod,
+                    upiTransactionId: paymentMethod === 'UPI' ? upiTransactionId : undefined
                 }),
             });
 
@@ -121,10 +129,31 @@ const CartSidebar = ({ onAuthClick }) => {
                                     <input type="radio" name="payment" value="COD" checked={paymentMethod === 'COD'} onChange={(e) => setPaymentMethod(e.target.value)} />
                                     <span className="payment-label">Cash on Delivery (COD)</span>
                                 </label>
-                                <label className={`payment-option ${paymentMethod === 'UPI' ? 'selected' : ''}`}>
-                                    <input type="radio" name="payment" value="UPI" checked={paymentMethod === 'UPI'} onChange={(e) => setPaymentMethod(e.target.value)} />
-                                    <span className="payment-label">UPI (GPay, PhonePe, Paytm)</span>
-                                </label>
+
+                                <div className={`payment-option-container ${paymentMethod === 'UPI' ? 'expanded' : ''}`}>
+                                    <label className={`payment-option ${paymentMethod === 'UPI' ? 'selected' : ''}`}>
+                                        <input type="radio" name="payment" value="UPI" checked={paymentMethod === 'UPI'} onChange={(e) => setPaymentMethod(e.target.value)} />
+                                        <span className="payment-label">UPI (GPay, PhonePe, Paytm)</span>
+                                    </label>
+
+                                    {paymentMethod === 'UPI' && (
+                                        <div className="upi-details">
+                                            <p className="upi-instructions">Scan QR Code to Pay <b>₹{cartTotal}</b></p>
+                                            <img src="/src/assets/upi_qr_code.png" alt="UPI QR Code" className="upi-qr-image" />
+                                            <div className="checkout-input-group">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Enter 12-digit UTR/Transaction ID *"
+                                                    value={upiTransactionId}
+                                                    onChange={(e) => setUpiTransactionId(e.target.value)}
+                                                    required
+                                                    className="upi-tx-input"
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
                                 <label className={`payment-option ${paymentMethod === 'CARD' ? 'selected' : ''}`}>
                                     <input type="radio" name="payment" value="CARD" checked={paymentMethod === 'CARD'} onChange={(e) => setPaymentMethod(e.target.value)} />
                                     <span className="payment-label">Credit / Debit Card</span>

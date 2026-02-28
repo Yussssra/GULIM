@@ -31,6 +31,9 @@ const orderSchema = new mongoose.Schema({
         enum: ['COD', 'UPI', 'CARD'],
         default: 'COD'
     },
+    upiTransactionId: {
+        type: String,
+    },
     status: {
         type: String,
         default: 'Pending',

@@ -395,6 +395,66 @@
     color: var(--primary);
 }
 
+.payment-option-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.payment-option-container.expanded {
+    border-color: var(--primary);
+    background: rgba(74, 4, 4, 0.02);
+}
+
+.payment-option-container .payment-option {
+    border: none;
+    border-bottom: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.payment-option-container.expanded .payment-option {
+    border-bottom: 1px solid rgba(74, 4, 4, 0.1);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.upi-details {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    animation: fadeIn 0.4s ease;
+}
+
+.upi-instructions {
+    font-size: 0.9rem;
+    color: #333;
+    margin: 0;
+    text-align: center;
+}
+
+.upi-qr-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    border: 1px solid #eee;
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.upi-tx-input {
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
