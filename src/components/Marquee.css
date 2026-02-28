@@ -31,6 +31,17 @@
     opacity: 0.3;
 }
 
+@media (max-width: 768px) {
+    .marquee-text {
+        font-size: 0.65rem;
+        padding: 0 20px;
+    }
+
+    .dot {
+        margin-left: 20px;
+    }
+}
+
 @keyframes marquee-scroll {
     from {
         transform: translateX(0);

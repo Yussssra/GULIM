@@ -211,6 +211,20 @@
 @media (max-width: 500px) {
     .auth-content {
         max-width: 90%;
-        padding: 50px 25px;
+        padding: 40px 20px;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .auth-header {
+        margin-bottom: 25px;
+    }
+
+    .auth-header h2 {
+        font-size: 2rem;
+    }
+
+    .auth-form {
+        gap: 15px;
     }
 }

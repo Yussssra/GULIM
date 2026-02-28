@@ -7,54 +7,70 @@ const Navbar = ({ onCategoryChange, onAuthClick, onCartClick, searchQuery, onSea
     const { user, isAuthenticated, logout } = useAuth();
     const { cartCount } = useCart();
     const [searchOpen, setSearchOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const categories = ['ALL', 'JEANS', 'TROUSERS', 'CARGO', 'ACCESSORIES'];
 
     const handleSearchToggle = () => {
         if (searchOpen) {
             if (searchQuery.trim()) {
-                // If there's text, perform search (scroll to results)
                 onSearchSubmit?.();
             } else {
-                // If empty, close it
                 setSearchOpen(false);
             }
         } else {
-            // If closed, open it
             setSearchOpen(true);
         }
     };
 
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+    const closeMenu = () => setIsMenuOpen(false);
+
     return (
         <nav className="navbar">
             <div className="navbar-container">
+                <button
+                    className={`mobile-menu-btn ${isMenuOpen ? 'active' : ''}`}
+                    onClick={toggleMenu}
+                    aria-label="Toggle Menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
                 <div className="navbar-logo">
                     {/* Brand logo removed as requested */}
                 </div>
-                <ul className="navbar-links">
-                    <li><a href="/">HOME</a></li>
-                    <li className="nav-item-dropdown">
-                        <a href="#women" onClick={(e) => e.preventDefault()}>WOMEN</a>
-                        <div className="dropdown-box">
-                            {categories.map(cat => (
-                                <div key={cat} className="dropdown-item" onClick={() => onCategoryChange(cat)}>
-                                    {cat}
-                                </div>
-                            ))}
-                        </div>
-                    </li>
-                    <li className="nav-item-dropdown">
-                        <a href="#men" onClick={(e) => e.preventDefault()}>MEN</a>
-                        <div className="dropdown-box">
-                            {categories.map(cat => (
-                                <div key={cat} className="dropdown-item" onClick={() => onCategoryChange(cat)}>
-                                    {cat}
-                                </div>
-                            ))}
-                        </div>
-                    </li>
-                    <li><a href="#accessories" onClick={(e) => { e.preventDefault(); onCategoryChange('ACCESSORIES'); }}>ACCESSORIES</a></li>
-                    <li><a href="/sale">SALE</a></li>
-                </ul>
+
+                <div className={`navbar-menu-overlay ${isMenuOpen ? 'open' : ''}`} onClick={closeMenu}>
+                    <ul className="navbar-links" onClick={(e) => e.stopPropagation()}>
+                        <li className="mobile-only-logo">GULIM</li>
+                        <li><a href="/" onClick={closeMenu}>HOME</a></li>
+                        <li className="nav-item-dropdown">
+                            <a href="#women" onClick={(e) => { e.preventDefault(); if (window.innerWidth <= 768) toggleMenu(); }}>WOMEN</a>
+                            <div className="dropdown-box">
+                                {categories.map(cat => (
+                                    <div key={cat} className="dropdown-item" onClick={() => { onCategoryChange(cat); closeMenu(); }}>
+                                        {cat}
+                                    </div>
+                                ))}
+                            </div>
+                        </li>
+                        <li className="nav-item-dropdown">
+                            <a href="#men" onClick={(e) => { e.preventDefault(); if (window.innerWidth <= 768) toggleMenu(); }}>MEN</a>
+                            <div className="dropdown-box">
+                                {categories.map(cat => (
+                                    <div key={cat} className="dropdown-item" onClick={() => { onCategoryChange(cat); closeMenu(); }}>
+                                        {cat}
+                                    </div>
+                                ))}
+                            </div>
+                        </li>
+                        <li><a href="#accessories" onClick={(e) => { e.preventDefault(); onCategoryChange('ACCESSORIES'); closeMenu(); }}>ACCESSORIES</a></li>
+                        <li><a href="/sale" onClick={closeMenu}>SALE</a></li>
+                    </ul>
+                </div>
+
                 <div className="navbar-icons">
                     <div className="search-area">
                         <input

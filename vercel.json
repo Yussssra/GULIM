@@ -13,6 +13,10 @@
             "use": "@vercel/node"
         }
     ],
+    "env": {
+        "MONGODB_URI": "mongodb+srv://yusrahere77_db_user:0lzkFKh2b2OoN6TR@gulim.nvvlulh.mongodb.net/gulim_store?retryWrites=true&w=majority",
+        "JWT_SECRET": "gulim_secret_key_123_exclusive"
+    },
     "rewrites": [
         {
             "source": "/api/(.*)",

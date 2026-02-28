@@ -51,3 +51,15 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+@media (max-width: 768px) {
+    .animated-divider {
+        padding: 60px 20px;
+        gap: 20px;
+    }
+
+    .divider-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+    }
+}

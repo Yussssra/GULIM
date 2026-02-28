@@ -27,30 +27,46 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-if (!process.env.MONGODB_URI) {
-    console.error('Error: MONGODB_URI is not defined in .env');
-} else {
-    // Monitor connection states
-    mongoose.connection.on('connecting', () => console.log('Connecting to MongoDB...'));
-    mongoose.connection.on('connected', () => {
-        console.log('Mongoose connected to DB Cluster');
-        console.log('Active Database:', mongoose.connection.name);
-        console.log('Active Host:', mongoose.connection.host);
-    });
-    mongoose.connection.on('error', (err) => console.error('Mongoose connection error:', err));
-    mongoose.connection.on('disconnected', () => console.log('Mongoose disconnected'));
+// MongoDB Connection Variables
+let cachedDb = null;
 
-    mongoose.connect(process.env.MONGODB_URI, {
-        serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
-    })
-        .catch(err => {
-            console.error('Initial MongoDB connection failed:', err.message);
-            if (err.message.includes('IP not whitelisted')) {
-                console.error('SECURITY TIP: Please check your MongoDB Atlas IP Whitelist.');
-            }
+async function connectToDatabase() {
+    if (cachedDb) {
+        return cachedDb;
+    }
+
+    if (!process.env.MONGODB_URI) {
+        console.error('Error: MONGODB_URI is not defined in environment variables');
+        throw new Error('MONGODB_URI missing');
+    }
+
+    console.log('Connecting to MongoDB...');
+    try {
+        const db = await mongoose.connect(process.env.MONGODB_URI, {
+            serverSelectionTimeoutMS: 5000,
+            bufferCommands: false,
         });
+        cachedDb = db;
+        console.log('Mongoose connected to DB Cluster');
+        return db;
+    } catch (err) {
+        console.error('Initial MongoDB connection failed:', err.message);
+        if (err.message.includes('IP not whitelisted')) {
+            console.error('SECURITY TIP: Please check your MongoDB Atlas IP Whitelist.');
+        }
+        throw err;
+    }
 }
+
+// Global Middleware to ensure DB is connected before handling any API request
+app.use(async (req, res, next) => {
+    try {
+        await connectToDatabase();
+        next();
+    } catch (err) {
+        res.status(500).json({ error: 'Database connection failed', details: err.message });
+    }
+});
 
 // Routes
 app.use('/api/products', productRoutes);
@@ -62,9 +78,15 @@ app.get('/', (req, res) => {
     res.send('Gulim API is running...');
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Server is running locally on port ${PORT}`);
+    });
+}
+
+// Export the app for Vercel
+export default app;
 
 
 
