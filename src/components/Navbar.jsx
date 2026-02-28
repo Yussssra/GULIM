@@ -5,7 +5,7 @@ import { useCart } from '../context/CartContext';
 import './Navbar.css';
 
 const Navbar = ({ onCategoryChange, onAuthClick, onCartClick, searchQuery, onSearchChange, onSearchSubmit }) => {
-    const { user, isAuthenticated, logout } = useAuth();
+    const { user, isAuthenticated, isAdmin, logout } = useAuth();
     const { cartCount } = useCart();
     const navigate = useNavigate();
     const [searchOpen, setSearchOpen] = useState(false);
@@ -102,6 +102,7 @@ const Navbar = ({ onCategoryChange, onAuthClick, onCartClick, searchQuery, onSea
                                     <svg className="account-icon-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                                 </div>
                                 <div className="account-dropdown">
+                                    {isAdmin && <button className="dropdown-action-btn" style={{ color: 'var(--primary)', fontWeight: 'bold' }} onClick={() => navigate('/admin')}>ADMIN PANEL</button>}
                                     <button className="dropdown-action-btn" onClick={() => navigate('/profile')}>PROFILE</button>
                                     <button className="dropdown-action-btn logout-action" onClick={() => { logout(); navigate('/'); }}>LOGOUT</button>
                                 </div>

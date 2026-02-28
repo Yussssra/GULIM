@@ -11,6 +11,8 @@ import AuthModal from './components/AuthModal';
 import CartSidebar from './components/CartSidebar';
 import ProductDetails from './pages/ProductDetails';
 import Profile from './pages/Profile';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminRoute from './components/AdminRoute';
 import './App.css';
 
 function App() {
@@ -80,6 +82,11 @@ function App() {
         } />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/admin" element={
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        } />
       </Routes>
       <footer className="footer">
         <div className="footer-content">

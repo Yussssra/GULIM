@@ -1,0 +1,175 @@
+.admin-page {
+    padding-top: 80px;
+    min-height: 100vh;
+    background-color: #f4f6f8;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.admin-header {
+    background: #111;
+    color: #fff;
+    padding: 40px 0;
+}
+
+.admin-header h1 {
+    margin: 0 0 10px 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.admin-header p {
+    margin: 0;
+    color: #aaa;
+    font-size: 1.1rem;
+}
+
+.admin-content {
+    padding: 40px 0;
+}
+
+.admin-table-wrapper {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    padding: 20px;
+}
+
+.table-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.table-header-row h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.refresh-btn {
+    background: #f0f0f0;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    transition: all 0.2s;
+}
+
+.refresh-btn:hover {
+    background: #e0e0e0;
+    color: #000;
+}
+
+.admin-orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.admin-orders-table th {
+    padding: 12px 15px;
+    background: #fafafa;
+    border-bottom: 2px solid #eaeaea;
+    color: #666;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.admin-orders-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eaeaea;
+    vertical-align: middle;
+}
+
+.admin-orders-table tr:hover {
+    background: #fcfcfc;
+}
+
+.admin-id-cell {
+    font-family: monospace;
+    font-weight: 600;
+    color: #555;
+}
+
+.admin-customer-cell strong {
+    color: #000;
+}
+
+.admin-customer-cell small {
+    color: #888;
+}
+
+.admin-price-cell {
+    font-weight: 700;
+}
+
+.badge {
+    background: #eee;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Status colors map closely to Profile.css but inline for standalone stability */
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-processing {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status-completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-dropdown {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background: #fff;
+}
+
+.status-dropdown:focus {
+    outline: none;
+    border-color: #000;
+}
+
+@media (max-width: 1024px) {
+    .admin-orders-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
