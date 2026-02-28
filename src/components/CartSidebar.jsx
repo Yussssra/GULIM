@@ -139,6 +139,7 @@ const CartSidebar = ({ onAuthClick }) => {
                                     {paymentMethod === 'UPI' && (
                                         <div className="upi-details">
                                             <p className="upi-instructions">Scan QR Code to Pay <b>₹{cartTotal}</b></p>
+                                            <p className="upi-tag" style={{ margin: 0, fontSize: '0.85rem', color: '#666' }}>UPI ID: <b>9072202201@slc</b></p>
                                             <img src="/src/assets/upi_qr_code.png" alt="UPI QR Code" className="upi-qr-image" />
                                             <div className="checkout-input-group">
                                                 <input
