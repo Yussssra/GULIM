@@ -13,6 +13,7 @@ import ProductDetails from './pages/ProductDetails';
 import Profile from './pages/Profile';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminRoute from './components/AdminRoute';
+import LegalPage from './pages/LegalPage';
 import './App.css';
 
 function App() {
@@ -87,13 +88,25 @@ function App() {
             <AdminDashboard />
           </AdminRoute>
         } />
+        <Route path="/policy/:type" element={<LegalPage />} />
       </Routes>
       <footer className="footer">
         <div className="footer-content">
-          <p>&copy; 2025 GULIM Store. All rights reserved.</p>
-          <div className="footer-contact">
-            <p>Gmail: <a href="mailto:gulimindia@gmail.com">gulimindia@gmail.com</a></p>
-            <p>Instagram: <a href="https://instagram.com/gulim.india" target="_blank" rel="noopener noreferrer">@gulim.india</a></p>
+          <div className="footer-section">
+            <p>&copy; 2025 GULIM Store. All rights reserved.</p>
+            <div className="footer-contact">
+              <p>Gmail: <a href="mailto:gulimindia@gmail.com">gulimindia@gmail.com</a></p>
+              <p>Instagram: <a href="https://instagram.com/gulim.india" target="_blank" rel="noopener noreferrer">@gulim.india</a></p>
+            </div>
+          </div>
+          <div className="footer-section footer-legal">
+            <h4>Legal</h4>
+            <div className="legal-links">
+              <a href="/policy/privacy">Privacy Policy</a>
+              <a href="/policy/terms">Terms of Service</a>
+              <a href="/policy/shipping">Shipping Policy</a>
+              <a href="/policy/refunds">Refund & Cancellation</a>
+            </div>
           </div>
         </div>
       </footer>

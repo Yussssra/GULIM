@@ -216,24 +216,51 @@ main {
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.footer-contact {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.footer-section p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 0.9rem;
 }
 
 .footer-contact a {
-  color: var(--secondary);
+  color: #000;
+  text-decoration: none;
   font-weight: 500;
-  opacity: 0.75;
-  transition: opacity 0.3s ease;
 }
 
 .footer-contact a:hover {
-  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-legal h4 {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.legal-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legal-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.legal-links a:hover {
+  color: #000;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
