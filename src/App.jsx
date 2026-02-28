@@ -10,6 +10,7 @@ import AnimatedDivider from './components/AnimatedDivider';
 import AuthModal from './components/AuthModal';
 import CartSidebar from './components/CartSidebar';
 import ProductDetails from './pages/ProductDetails';
+import Profile from './pages/Profile';
 import './App.css';
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
           </main>
         } />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <footer className="footer">
         <div className="footer-content">

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import './Navbar.css';
@@ -6,6 +7,7 @@ import './Navbar.css';
 const Navbar = ({ onCategoryChange, onAuthClick, onCartClick, searchQuery, onSearchChange, onSearchSubmit }) => {
     const { user, isAuthenticated, logout } = useAuth();
     const { cartCount } = useCart();
+    const navigate = useNavigate();
     const [searchOpen, setSearchOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const categories = ['ALL', 'JEANS', 'TROUSERS', 'CARGO', 'ACCESSORIES'];
@@ -95,12 +97,13 @@ const Navbar = ({ onCategoryChange, onAuthClick, onCartClick, searchQuery, onSea
                             </button>
                         ) : (
                             <div className="user-profile-group">
-                                <div className="user-info-trigger">
+                                <div className="user-info-trigger" onClick={() => navigate('/profile')}>
                                     <span className="user-name-minimal">{user?.name?.split(' ')[0]}</span>
                                     <svg className="account-icon-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                                 </div>
                                 <div className="account-dropdown">
-                                    <button className="dropdown-action-btn logout-action" onClick={logout}>LOGOUT</button>
+                                    <button className="dropdown-action-btn" onClick={() => navigate('/profile')}>PROFILE</button>
+                                    <button className="dropdown-action-btn logout-action" onClick={() => { logout(); navigate('/'); }}>LOGOUT</button>
                                 </div>
                             </div>
                         )}
