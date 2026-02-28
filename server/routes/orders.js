@@ -6,7 +6,7 @@ const router = express.Router();
 // Create new order
 router.post('/', async (req, res) => {
     try {
-        const { user, items, totalAmount } = req.body;
+        const { user, items, totalAmount, shippingAddress, paymentMethod } = req.body;
 
         if (!user || !items || items.length === 0) {
             return res.status(400).json({ message: 'Invalid order data' });
@@ -15,7 +15,9 @@ router.post('/', async (req, res) => {
         const order = new Order({
             user,
             items,
-            totalAmount
+            totalAmount,
+            shippingAddress,
+            paymentMethod
         });
 
         await order.save();

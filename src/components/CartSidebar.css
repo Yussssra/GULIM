@@ -256,6 +256,145 @@
     line-height: 1.6;
 }
 
+/* Checkout Styles */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding-bottom: 20px;
+}
+
+.checkout-section-title {
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: 700;
+    color: var(--primary);
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+.payment-title {
+    margin-top: 10px;
+}
+
+.checkout-input-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.checkout-input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    background: #fafafa;
+    transition: border-color 0.2s ease;
+}
+
+.checkout-input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+}
+
+.checkout-row {
+    display: flex;
+    gap: 15px;
+}
+
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #fafafa;
+}
+
+.payment-option:hover {
+    background: #f0f0f0;
+}
+
+.payment-option.selected {
+    border-color: var(--primary);
+    background: rgba(74, 4, 4, 0.05);
+    /* Tinted primary */
+}
+
+.payment-option input[type="radio"] {
+    accent-color: var(--primary);
+    transform: scale(1.2);
+}
+
+.payment-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.checkout-summary {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.checkout-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.place-order-btn {
+    width: 100%;
+    background: var(--primary);
+    color: var(--secondary);
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.place-order-btn:hover {
+    background: var(--primary-dark);
+}
+
+.back-to-cart-btn {
+    width: 100%;
+    background: transparent;
+    color: #666;
+    border: none;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.back-to-cart-btn:hover {
+    color: var(--primary);
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
